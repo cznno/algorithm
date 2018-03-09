@@ -2,6 +2,7 @@ package practice.sort;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.function.UnaryOperator;
 
 /**
  * Created by cznno
@@ -9,7 +10,7 @@ import java.io.FileReader;
  */
 abstract class BaseSort {
 
-    static Integer[] integers;
+    private static Integer[] integers;
 
     static {
         try {
@@ -36,12 +37,12 @@ abstract class BaseSort {
         a[j] = t;
     }
 
-    static <T> void show(Comparable<T>[] a) {
+    private static <T> void show(Comparable<T>[] a) {
         for (Comparable<T> anA : a) System.out.println(anA + " ");
         System.out.println();
     }
 
-    static <T> boolean isSorted(Comparable<T>[] a) {
+    private static <T> boolean isSorted(Comparable<T>[] a) {
         for (int i = 1; i < a.length; i++) {
             if (less(a[i], (T) a[i - 1])) return false;
         }
@@ -50,5 +51,14 @@ abstract class BaseSort {
 
     static <T> boolean less(Comparable<T> v, T w) {
         return v.compareTo(w) < 0;
+    }
+
+    static void doSort(UnaryOperator<Comparable[]> function) {
+        System.out.println("unsorted:");
+        show(BaseSort.integers);
+        System.out.println("sorted:");
+        Comparable[] res = function.apply(BaseSort.integers);
+        assert BaseSort.isSorted(res);
+        show(res);
     }
 }
