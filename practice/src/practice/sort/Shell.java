@@ -3,7 +3,7 @@ package practice.sort;
 import java.util.function.UnaryOperator;
 
 /**
- * 希尔排序,基于插入排序
+ * 希尔排序,基于插入排序(更高效的改进版本)
  * 使数组中任意间隔为h的元素都是有序的
  * 对于每个h,用插入排序将每个元素交换到比它大的元素之前
  * Created by cznno
@@ -14,6 +14,7 @@ public class Shell extends BaseSort implements UnaryOperator<Comparable[]> {
     private static <T> Comparable[] sort(Comparable<T>[] a) {
         int N = a.length;
         int h = 1;
+        // 序列1/2（3^k-1）,不大于N/3： 即1,4,13,40,121...
         while (h < N / 3) {
             h = 3 * h + 1;
         }

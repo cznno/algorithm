@@ -14,8 +14,9 @@ class Insertion extends BaseSort implements UnaryOperator<Comparable[]> {
     private static Comparable[] sort(Comparable[] a) {
         int N = a.length;
         for (int i = 1; i < N; i++) {
-            //倒序比较
+            // 倒序比较
             for (int j = i; j > 0 && less(a[j], a[j - 1]); j--) {
+                // 插入排序每次只能将数据移动一位
                 exch(a, j, j - 1);
             }
         }
