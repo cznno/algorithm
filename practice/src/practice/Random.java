@@ -14,7 +14,7 @@ class Random {
             do {
                 Integer id = new java.util.Random().nextInt(255);
                 out.write(id.toString() + " ");
-            } while (i++ < 100);
+            } while (++i < 100);
             out.close();
         } catch (IOException e) {
             e.printStackTrace();
