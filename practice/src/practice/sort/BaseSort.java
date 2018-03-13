@@ -2,6 +2,7 @@ package practice.sort;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.concurrent.TimeUnit;
 import java.util.function.UnaryOperator;
 
 /**
@@ -55,9 +56,11 @@ abstract class BaseSort {
 
     static void doSort(UnaryOperator<Comparable[]> function) {
         System.out.println("unsorted:");
-        show(BaseSort.integers);
+//        show(BaseSort.integers);
         System.out.println("sorted:");
+        long start = System.nanoTime();
         Comparable[] res = function.apply(BaseSort.integers);
+        System.out.println("used:" + TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start) + " ms");
         assert BaseSort.isSorted(res);
         show(res);
     }
